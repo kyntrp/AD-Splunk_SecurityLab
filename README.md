@@ -118,7 +118,7 @@ Also download Sysmon olaf config (sysmonconfig.xml) :
 
 
 Go to downloads then extract the Sysmon that downloaded earlier. Start Windows Powershell as Administrator, change directory to the Sysmon folder we extracted then type  : 
-.\Sysmon64.exe -i <insert the location of Sysmon config> 
+```.\Sysmon64.exe -i ..\<Name of Sysmon config> ```
 Then click ‘Agree’
 
 ![image](https://github.com/user-attachments/assets/5dc136b8-3106-487b-b4e5-17da2f804c1b)
@@ -140,7 +140,7 @@ Now go back to the splunk installation.
 We need to instruct our Splunk Forwarder on what we want to send to our splunk server,
 Create a new file in Notepad as Administrator.
 Put this inside the file :
-
+```
 [WinEventLog://Application]
 
 index = endpoint
@@ -171,7 +171,7 @@ disabled = false
 renderXml = true
 
 source = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
-
+```
 
 
 ![image](https://github.com/user-attachments/assets/3440136e-bd06-4059-9d79-de924c7710bf)
@@ -236,7 +236,7 @@ Domain.Sample)
 ![image](https://github.com/user-attachments/assets/106a1c95-3371-4483-9f6e-07da8cfcc564)
 
 
-Leave everything default then set a password. Keep clicking ‘Next’. It will do a Prerequisites Check then
+Leave everything default then set a password. Keep clicking ‘Next’. It will do a 'Prerequisites Check' then
 You can ‘Install’ it. Once the setup is completed, the server will automatically restart.
 
 ![image](https://github.com/user-attachments/assets/a3e70541-4065-4f87-b95a-53ecf8db9aa3)
@@ -276,9 +276,9 @@ Once the restart is done, you can now login the created account in domain into t
 
 Now go to Kali Linux to start setting up an attack.
 Open the Terminal,
-Update and update repositories by typing ‘sudo apt-get update && sudo apt-get upgrade -y’
-Create new directory ‘ad-project’ (mkdir ad-project) all of the files that we will use to attack will be put in this directory.
-Install crowbar (sudo apt-get install -y crowbar). I will be using this for a bruteforce attack.
+Update and update repositories by typing `‘sudo apt-get update && sudo apt-get upgrade -y’`
+Create new directory ‘ad-project’ (`mkdir ad-project`) all of the files that we will use to attack will be put in this directory.
+Install crowbar (`sudo apt-get install -y crowbar`). I will be using this for a bruteforce attack.
 Note : Please don’t target asset that you don’t have permission to do so. Only use this for educational purposes and use this for your lab or machine that you own.
 
 
@@ -286,14 +286,14 @@ Note : Please don’t target asset that you don’t have permission to do so. On
 
 
 
-Once the installation is done, go to the wordlists directory (cd /usr/share/wordlists/)
-Use gunzip to extract the rockyou file (sudo gunzip rockyou.txt.gz)
-Then copy it to the created folder (cp rockyou.txt ~/Desktop/ad-project)
+Once the installation is done, go to the wordlists directory (`cd /usr/share/wordlists/`)
+Use gunzip to extract the rockyou file (`sudo gunzip rockyou.txt.gz`)
+Then copy it to the created folder (`cp rockyou.txt ~/Desktop/ad-project`)
 
 ![image](https://github.com/user-attachments/assets/e4e51b43-edd6-46f1-af63-fdd974dc68a9)
 
 
-Get only the first 20 lines then put it in a new text file (head -n 20 rockyou.txt > passwords.txt)
+Get only the first 20 lines then put it in a new text file (`head -n 20 rockyou.txt > passwords.txt`)
 
 ![image](https://github.com/user-attachments/assets/026cb3fd-825f-4c74-9709-47a021228683)
 
@@ -322,7 +322,7 @@ Here's a sample of what you see when you run the command :
 
 
 Now, go to splunk to check what telemetry are created.
-Copy the text I put in search box and set the time in Last 15 minutes
+Copy the text I put in search box and set the time in 'Last 15 minutes'.
 
 ![image](https://github.com/user-attachments/assets/152d8980-5158-49cc-acef-b691950cf610)
 
